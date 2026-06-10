@@ -231,7 +231,8 @@
     const valid = stepValid(current);
     const last = current === steps.length - 1;
     nextBtn.hidden = last;
-    submitBtn.hidden = !last;
+    // Only reveal "Request My Lesson" on the final step once everything is filled out
+    submitBtn.hidden = !(last && valid);
     nextBtn.disabled = !valid;
     submitBtn.disabled = !valid;
     backBtn.hidden = current === 0;
