@@ -405,7 +405,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 /* --------- Chooser --------- */
 
 .choose {
-  padding: 48px 0 90px;
+  padding: 48px 0 50px;
   background: var(--cream-soft);
   position: relative;
 }
@@ -609,7 +609,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 
 /* --------- About --------- */
 
-.about { padding: 120px 0; background: var(--cream-soft); }
+.about { padding: 55px 0 110px; background: var(--cream-soft); }
 
 .two-col {
   display: grid;
