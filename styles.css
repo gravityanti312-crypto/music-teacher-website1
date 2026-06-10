@@ -302,6 +302,23 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 .hero-copy .eyebrow { color: var(--gold-light); }
 .hero-copy .eyebrow::before { background: var(--gold-light); }
 
+/* Prominent "15+ Years of Experience" badge — top of hero, before scroll */
+.hero-experience {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+  padding: 9px 18px;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--navy-deep);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 8px 20px rgba(201, 169, 97, 0.4);
+}
+
 .hero h1 {
   color: var(--cream);
   margin-bottom: 28px;
