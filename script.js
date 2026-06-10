@@ -25,6 +25,36 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 revealEls.forEach(el => io.observe(el));
 
+// First-lesson-free promo popup
+(function () {
+  const overlay = document.getElementById('promoOverlay');
+  if (!overlay) return;
+  const closeBtn = document.getElementById('promoClose');
+  const dismissBtn = document.getElementById('promoDismiss');
+
+  function openPromo() {
+    overlay.hidden = false;
+    // allow the element to render before transitioning in
+    requestAnimationFrame(() => overlay.classList.add('show'));
+  }
+  function closePromo() {
+    overlay.classList.remove('show');
+    setTimeout(() => { overlay.hidden = true; }, 320);
+  }
+
+  closeBtn?.addEventListener('click', closePromo);
+  dismissBtn?.addEventListener('click', closePromo);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) closePromo(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePromo(); });
+
+  // Show shortly after first opening the site...
+  setTimeout(openPromo, 1200);
+  // ...then bring it back every minute.
+  setInterval(() => {
+    if (overlay.hidden) openPromo();
+  }, 60000);
+})();
+
 // Form handler
 function handleSubmit(form) {
   const data = new FormData(form);
