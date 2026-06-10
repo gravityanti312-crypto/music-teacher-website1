@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Book a Lesson — Julie Durrant Music Studio</title>
-<meta name="description" content="Book a piano or violin lesson with Julie Durrant. Request your first lesson today." />
+<meta name="description" content="Build your piano or violin lesson booking with Julie Durrant in a few easy steps." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -32,81 +32,132 @@
   </div>
 </header>
 
-<!-- BOOKING -->
-<section class="book-hero">
+<!-- QUOTE BUILDER -->
+<section class="wizard-hero">
   <div class="hero-bg"></div>
-  <div class="container book-inner">
+  <div class="container">
 
-    <div class="book-copy">
-      <p class="eyebrow gold">Reserve Your Spot</p>
-      <h1>Book a <span class="script">Lesson</span></h1>
-      <p class="lead">Fill out the form and I'll reach out within 24 hours to set up a free meet-and-greet, talk through your goals, and find a lesson time that fits your week.</p>
-
-      <ul class="book-steps">
-        <li><span>1</span><div><strong>Tell me about you</strong><small>Share your instrument, age, and experience.</small></div></li>
-        <li><span>2</span><div><strong>We connect</strong><small>A quick call or message to plan your start.</small></div></li>
-        <li><span>3</span><div><strong>Your first lesson</strong><small>Begin your musical journey — in shop or online.</small></div></li>
-      </ul>
-
-      <a href="tel:4802924799" class="contact-phone">
-        <span class="phone-icon">📞</span>
-        <div>
-          <small>Prefer to call or text?</small>
-          <strong>480-292-4799</strong>
-        </div>
-      </a>
+    <div class="wizard-head">
+      <p class="eyebrow gold">Build Your Booking</p>
+      <h1>Let's set up your <span class="script">lesson</span></h1>
     </div>
 
-    <form class="contact-form book-form" onsubmit="event.preventDefault(); handleBooking(this);">
-      <h3>Request Your Lesson</h3>
-      <label>
-        <span>Your name</span>
-        <input type="text" name="name" required />
-      </label>
-      <label>
-        <span>Phone or email</span>
-        <input type="text" name="contact" required />
-      </label>
-      <div class="form-row">
-        <label>
-          <span>Instrument</span>
-          <select name="instrument" id="instrument">
-            <option>Piano</option>
-            <option>Violin</option>
-            <option>Both</option>
-            <option>Not sure yet</option>
+    <!-- Progress -->
+    <div class="wiz-progress">
+      <div class="wiz-step-dot active" data-dot="1"><span>1</span><small>Instrument</small></div>
+      <div class="wiz-bar"><i></i></div>
+      <div class="wiz-step-dot" data-dot="2"><span>2</span><small>Format</small></div>
+      <div class="wiz-bar"><i></i></div>
+      <div class="wiz-step-dot" data-dot="3"><span>3</span><small>Days</small></div>
+      <div class="wiz-bar"><i></i></div>
+      <div class="wiz-step-dot" data-dot="4"><span>4</span><small>Your Info</small></div>
+    </div>
+
+    <form id="wizard" onsubmit="event.preventDefault(); submitBooking();">
+
+      <!-- STEP 1 -->
+      <div class="wiz-step" data-step="1">
+        <h2>Which lessons are you after?</h2>
+        <p class="wiz-sub">Pick the instrument you'd like to learn.</p>
+        <div class="wiz-options">
+          <label class="wiz-option">
+            <input type="radio" name="instrument" value="Piano" required />
+            <div class="wiz-card"><span class="wiz-emoji">🎹</span><strong>Piano</strong><small>Most popular</small></div>
+          </label>
+          <label class="wiz-option">
+            <input type="radio" name="instrument" value="Violin" />
+            <div class="wiz-card"><span class="wiz-emoji">🎻</span><strong>Violin</strong><small>Beginner friendly</small></div>
+          </label>
+          <label class="wiz-option">
+            <input type="radio" name="instrument" value="Both" />
+            <div class="wiz-card"><span class="wiz-emoji">🎼</span><strong>Both</strong><small>Best value</small></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="wiz-step" data-step="2" hidden>
+        <h2>How would you like to be taught?</h2>
+        <p class="wiz-sub">In-shop or from the comfort of home.</p>
+        <div class="wiz-options">
+          <label class="wiz-option">
+            <input type="radio" name="format" value="In person" required />
+            <div class="wiz-card"><span class="wiz-emoji">🏠</span><strong>In Person</strong><small>At the studio</small></div>
+          </label>
+          <label class="wiz-option">
+            <input type="radio" name="format" value="Online" />
+            <div class="wiz-card"><span class="wiz-emoji">💻</span><strong>Online</strong><small>Video lessons</small></div>
+          </label>
+          <label class="wiz-option">
+            <input type="radio" name="format" value="Either works" />
+            <div class="wiz-card"><span class="wiz-emoji">✨</span><strong>Either</strong><small>I'm flexible</small></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="wiz-step" data-step="3" hidden>
+        <h2>What days work best for you?</h2>
+        <p class="wiz-sub">Choose any days that fit your schedule.</p>
+        <div class="wiz-days">
+          <label class="wiz-day"><input type="checkbox" name="days" value="Monday" /><span>Mon</span></label>
+          <label class="wiz-day"><input type="checkbox" name="days" value="Tuesday" /><span>Tue</span></label>
+          <label class="wiz-day"><input type="checkbox" name="days" value="Wednesday" /><span>Wed</span></label>
+          <label class="wiz-day"><input type="checkbox" name="days" value="Thursday" /><span>Thu</span></label>
+          <label class="wiz-day"><input type="checkbox" name="days" value="Friday" /><span>Fri</span></label>
+          <label class="wiz-day"><input type="checkbox" name="days" value="Saturday" /><span>Sat</span></label>
+          <label class="wiz-day"><input type="checkbox" name="days" value="Sunday" /><span>Sun</span></label>
+        </div>
+        <label class="wiz-time">
+          <span>Preferred time of day</span>
+          <select name="time">
+            <option value="">Select a time…</option>
+            <option>Morning</option>
+            <option>Afternoon</option>
+            <option>Evening</option>
+            <option>No preference</option>
           </select>
         </label>
-        <label>
-          <span>Student age</span>
-          <input type="text" name="age" placeholder="e.g. 8, or adult" />
-        </label>
       </div>
-      <label>
-        <span>Experience level</span>
-        <select name="level">
-          <option>Total beginner</option>
-          <option>Some experience</option>
-          <option>Intermediate</option>
-          <option>Advanced</option>
-        </select>
-      </label>
-      <label>
-        <span>Preferred format</span>
-        <select name="format">
-          <option>In shop</option>
-          <option>Mobile / online</option>
-          <option>Either works</option>
-        </select>
-      </label>
-      <label>
-        <span>Anything else? (optional)</span>
-        <textarea name="message" rows="3" placeholder="Goals, scheduling preferences, questions…"></textarea>
-      </label>
-      <button type="submit" class="btn btn-gold full">Request My First Lesson</button>
-      <p class="form-note">I'll get back to you within 24 hours.</p>
-    </form>
 
+      <!-- STEP 4 -->
+      <div class="wiz-step" data-step="4" hidden>
+        <h2>Last step — your details</h2>
+        <p class="wiz-sub">So Julie can reach out to confirm your spot.</p>
+        <div class="wiz-fields">
+          <label>
+            <span>Full name</span>
+            <input type="text" name="name" required />
+          </label>
+          <label>
+            <span>Phone number</span>
+            <input type="tel" name="phone" required placeholder="480-000-0000" />
+          </label>
+          <label>
+            <span>Email (Gmail)</span>
+            <input type="email" name="email" required placeholder="you@gmail.com" />
+          </label>
+          <label>
+            <span>Student age</span>
+            <input type="text" name="age" placeholder="e.g. 8, or adult" />
+          </label>
+          <label class="wiz-full">
+            <span>Anything else? (optional)</span>
+            <textarea name="message" rows="3" placeholder="Goals, questions, scheduling notes…"></textarea>
+          </label>
+        </div>
+
+        <div class="wiz-summary" id="wizSummary"></div>
+      </div>
+
+      <!-- NAV -->
+      <div class="wiz-nav">
+        <button type="button" class="btn btn-ghost-dark" id="wizBack" hidden>← Back</button>
+        <button type="button" class="btn btn-gold" id="wizNext" disabled>Continue →</button>
+        <button type="submit" class="btn btn-gold" id="wizSubmit" hidden disabled>Request My Lesson</button>
+      </div>
+
+    </form>
   </div>
 </section>
 
@@ -134,7 +185,6 @@
 </footer>
 
 <script>
-  // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Mobile nav
@@ -142,32 +192,106 @@
   const links = document.querySelector('.nav-links');
   toggle?.addEventListener('click', () => links.classList.toggle('open'));
 
-  // Pre-select instrument from ?instrument= query param
-  const params = new URLSearchParams(window.location.search);
-  const inst = params.get('instrument');
-  if (inst) {
-    const sel = document.getElementById('instrument');
-    [...sel.options].forEach(o => { if (o.value === inst) sel.value = inst; });
+  const form = document.getElementById('wizard');
+  const steps = [...form.querySelectorAll('.wiz-step')];
+  const dots = [...document.querySelectorAll('.wiz-step-dot')];
+  const bars = [...document.querySelectorAll('.wiz-bar')];
+  const backBtn = document.getElementById('wizBack');
+  const nextBtn = document.getElementById('wizNext');
+  const submitBtn = document.getElementById('wizSubmit');
+  let current = 0;
+
+  // Pre-select instrument from ?instrument=
+  const pre = new URLSearchParams(location.search).get('instrument');
+  if (pre) {
+    const r = form.querySelector(`input[name="instrument"][value="${pre}"]`);
+    if (r) r.checked = true;
   }
 
-  // Booking submit -> prefilled email
-  function handleBooking(form) {
-    const d = new FormData(form);
-    const name = d.get('name');
-    const subject = encodeURIComponent(`Lesson booking request from ${name}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\n` +
-      `Contact: ${d.get('contact')}\n` +
-      `Instrument: ${d.get('instrument')}\n` +
-      `Student age: ${d.get('age')}\n` +
-      `Experience: ${d.get('level')}\n` +
-      `Format: ${d.get('format')}\n\n` +
-      `Message:\n${d.get('message')}`
-    );
-    window.location.href = `mailto:ryguyvaughn09@gmail.com?subject=${subject}&body=${body}`;
-    alert(`Thanks ${name}! Your booking request is ready to send — Julie will be in touch within 24 hours.`);
-    form.reset();
+  // Validation per step
+  function stepValid(i) {
+    const step = steps[i];
+    if (i === 0) return !!form.instrument.value;
+    if (i === 1) return !!form.format.value;
+    if (i === 2) {
+      const anyDay = form.querySelectorAll('input[name="days"]:checked').length > 0;
+      return anyDay && !!form.time.value;
+    }
+    if (i === 3) {
+      const name = form.name.value.trim();
+      const phone = form.phone.value.trim();
+      const email = form.email.value.trim();
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      return name && phone && emailOk;
+    }
+    return false;
   }
+
+  function refreshButtons() {
+    const valid = stepValid(current);
+    const last = current === steps.length - 1;
+    nextBtn.hidden = last;
+    submitBtn.hidden = !last;
+    nextBtn.disabled = !valid;
+    submitBtn.disabled = !valid;
+    backBtn.hidden = current === 0;
+  }
+
+  function showStep(i) {
+    steps.forEach((s, idx) => s.hidden = idx !== i);
+    dots.forEach((d, idx) => {
+      d.classList.toggle('active', idx === i);
+      d.classList.toggle('done', idx < i);
+    });
+    bars.forEach((b, idx) => b.classList.toggle('done', idx < i));
+    if (i === steps.length - 1) buildSummary();
+    refreshButtons();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (stepValid(current) && current < steps.length - 1) { current++; showStep(current); }
+  });
+  backBtn.addEventListener('click', () => {
+    if (current > 0) { current--; showStep(current); }
+  });
+
+  // Re-check validity whenever anything changes
+  form.addEventListener('input', refreshButtons);
+  form.addEventListener('change', refreshButtons);
+
+  function buildSummary() {
+    const days = [...form.querySelectorAll('input[name="days"]:checked')].map(d => d.value).join(', ') || '—';
+    document.getElementById('wizSummary').innerHTML = `
+      <h4>Your booking</h4>
+      <ul>
+        <li><strong>Instrument:</strong> ${form.instrument.value || '—'}</li>
+        <li><strong>Format:</strong> ${form.format.value || '—'}</li>
+        <li><strong>Days:</strong> ${days}</li>
+        <li><strong>Time:</strong> ${form.time.value || '—'}</li>
+      </ul>`;
+  }
+
+  function submitBooking() {
+    if (!stepValid(3)) return;
+    const days = [...form.querySelectorAll('input[name="days"]:checked')].map(d => d.value).join(', ');
+    const subject = encodeURIComponent(`Lesson booking from ${form.name.value}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name.value}\n` +
+      `Phone: ${form.phone.value}\n` +
+      `Email: ${form.email.value}\n` +
+      `Student age: ${form.age.value}\n\n` +
+      `Instrument: ${form.instrument.value}\n` +
+      `Format: ${form.format.value}\n` +
+      `Preferred days: ${days}\n` +
+      `Preferred time: ${form.time.value}\n\n` +
+      `Message:\n${form.message.value}`
+    );
+    location.href = `mailto:ryguyvaughn09@gmail.com?subject=${subject}&body=${body}`;
+    alert(`Thanks ${form.name.value}! Your booking request is ready to send — Julie will be in touch within 24 hours.`);
+  }
+
+  showStep(0);
 </script>
 </body>
 </html>
