@@ -1645,9 +1645,26 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   /* Free box stays prominent and full-width */
   .free-box { max-width: 100%; }
 
-  /* Give the floating image badge room so it doesn't collide with the next section */
-  .hero-visual { margin-bottom: 48px; }
-  .hero-badge { left: 50%; transform: translateX(-50%); bottom: -30px; padding: 14px 20px; }
+  /* Smaller hero picture so everything fits on one screen */
+  .hero-visual { max-width: 300px; margin: 6px auto 52px; }
+  .hero-card { aspect-ratio: 5/4; padding: 12px; }
+  .hero-img-wrap::after { font-size: 3rem; bottom: 16px; left: 20px; }
+
+  /* Cleaner "Now Enrolling" badge — a tidy rounded pill, centered */
+  .hero-badge {
+    left: 50%;
+    bottom: -24px;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 94%;
+    padding: 11px 22px;
+    border-radius: 50px;
+    gap: 12px;
+    box-shadow: 0 14px 32px rgba(15, 29, 53, 0.28);
+  }
+  .hero-badge .treble { font-size: 1.7rem; }
+  .hero-badge strong { font-size: 1.05rem; }
+  .hero-badge small { font-size: 0.78rem; }
 
   /* Comfortable section rhythm on small screens */
   .choose { padding: 44px 0; }
