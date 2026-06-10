@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kids' Music Lessons in Mesa, AZ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2a2438;
+    --muted: #8b8597;
+    --accent: #ff7a59;        /* warm coral */
+    --accent-dark: #f2603c;
+    --cream: #fff8f3;
+    --cream-2: #fff1e8;
+    --shadow: 0 24px 60px rgba(255, 122, 89, 0.22);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 85% 15%, var(--cream-2), transparent 55%),
+      radial-gradient(circle at 10% 90%, #eafbf5, transparent 50%),
+      var(--cream);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 80px 32px;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 64px;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  /* ---------- Text column ---------- */
+  .hero-text { max-width: 560px; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--accent-dark);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    border-radius: 50px;
+    box-shadow: 0 6px 18px rgba(42, 36, 56, 0.08);
+    margin-bottom: 26px;
+  }
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.4rem, 5vw, 3.9rem);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  h1 .hl {
+    color: var(--accent);
+    position: relative;
+    white-space: nowrap;
+  }
+
+  .subhead {
+    font-size: 1.18rem;
+    line-height: 1.65;
+    color: #5b5468;
+    margin-bottom: 36px;
+  }
+  .subhead .place { color: var(--ink); font-weight: 600; }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #ff8f6b, var(--accent));
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 18px 38px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 30px 70px rgba(255, 122, 89, 0.32);
+  }
+  .cta svg { transition: transform 0.25s ease; }
+  .cta:hover svg { transform: translateX(4px); }
+
+  .trust {
+    margin-top: 20px;
+    font-size: 0.92rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .trust .star { color: #ffb02e; }
+
+  /* ---------- Image column ---------- */
+  .hero-media {
+    position: relative;
+    justify-self: center;
+  }
+  .photo {
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 4 / 5;
+    border-radius: 28px;
+    object-fit: cover;
+    box-shadow: 0 30px 70px rgba(42, 36, 56, 0.18);
+    border: 8px solid #fff;
+    display: block;
+  }
+  .blob {
+    position: absolute;
+    inset: -28px -28px auto auto;
+    width: 150px; height: 150px;
+    background: var(--cream-2);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .float-card {
+    position: absolute;
+    left: -26px;
+    bottom: 34px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 18px 40px rgba(42, 36, 56, 0.16);
+  }
+  .float-card .emoji {
+    width: 46px; height: 46px;
+    border-radius: 14px;
+    background: var(--cream-2);
+    display: grid; place-items: center;
+    font-size: 1.5rem;
+  }
+  .float-card strong { display: block; font-family: 'Poppins', sans-serif; font-size: 0.98rem; }
+  .float-card small { color: var(--muted); font-size: 0.82rem; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 48px;
+      text-align: center;
+      padding: 64px 24px;
+      min-height: auto;
+    }
+    .hero-text { max-width: 620px; margin: 0 auto; }
+    .trust { justify-content: center; }
+    .hero-media { order: 2; }            /* photo below the text on mobile */
+    .float-card { left: 8px; }
+  }
+  @media (max-width: 480px) {
+    .cta { width: 100%; justify-content: center; }
+    .float-card { display: none; }
+    .photo { border-width: 6px; }
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-text">
+      <span class="pill">🎵 Now booking in Mesa, Arizona</span>
+      <h1>Music lessons your child <span class="hl">actually</span> looks forward to.</h1>
+      <p class="subhead">
+        Patient, fun lessons that build real skill and confidence — watch them play their
+        first song in weeks. <span class="place">Now booking students in Mesa, Arizona.</span>
+      </p>
+      <a href="book.html" class="cta">
+        Book a Free Lesson
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <p class="trust">
+        <span class="star">⭐</span> 15+ years teaching local families · In-home &amp; studio lessons available
+      </p>
+    </div>
+
+    <div class="hero-media">
+      <span class="blob"></span>
+      <img class="photo"
+           src="https://images.unsplash.com/photo-1588075592446-265fd1e6e76f?w=900&q=80"
+           alt="A happy child smiling while playing the piano" />
+      <div class="float-card">
+        <span class="emoji">🎹</span>
+        <div>
+          <strong>First song in weeks</strong>
+          <small>Real progress, real fast</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
