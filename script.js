@@ -47,12 +47,11 @@ revealEls.forEach(el => io.observe(el));
   overlay.addEventListener('click', (e) => { if (e.target === overlay) closePromo(); });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePromo(); });
 
-  // Show shortly after first opening the site...
-  setTimeout(openPromo, 1200);
-  // ...then bring it back every minute.
-  setInterval(() => {
-    if (overlay.hidden) openPromo();
-  }, 60000);
+  // Show once per visit: only if it hasn't already been shown this browser session.
+  if (!sessionStorage.getItem('promoShown')) {
+    sessionStorage.setItem('promoShown', '1');
+    setTimeout(openPromo, 1200);
+  }
 })();
 
 // Form handler

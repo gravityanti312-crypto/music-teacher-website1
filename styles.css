@@ -326,6 +326,65 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 
 .hero-place { color: var(--gold-light); font-weight: 600; }
 
+/* --------- Hero "First Lesson Free" box --------- */
+.free-box {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 480px;
+  margin-bottom: 32px;
+  padding: 18px 22px;
+  border-radius: 16px;
+  text-decoration: none;
+  background: linear-gradient(135deg, rgba(201, 169, 97, 0.16), rgba(201, 169, 97, 0.06));
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: freePulse 2.6s ease-in-out infinite;
+}
+.free-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(201, 169, 97, 0.3);
+}
+@keyframes freePulse {
+  0%, 100% { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18); }
+  50% { box-shadow: 0 10px 34px rgba(201, 169, 97, 0.35); }
+}
+.free-box-tag {
+  position: absolute;
+  top: 0; right: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #1a2238;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  padding: 4px 12px;
+  border-bottom-left-radius: 12px;
+}
+.free-box-main { display: flex; flex-direction: column; gap: 4px; }
+.free-box-main strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+}
+.free-box-em { color: var(--gold-light); font-style: italic; }
+.free-box-main small { color: rgba(247, 241, 230, 0.78); font-size: 0.85rem; }
+.free-box-arrow {
+  margin-left: auto;
+  font-size: 1.4rem;
+  color: var(--gold-light);
+  transition: transform 0.25s ease;
+}
+.free-box:hover .free-box-arrow { transform: translateX(4px); }
+@media (max-width: 560px) {
+  .free-box { gap: 12px; padding: 16px 18px; }
+  .free-box-main strong { font-size: 1.25rem; }
+}
+
 /* --------- Promo Popup --------- */
 .promo-overlay {
   position: fixed;
@@ -341,6 +400,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   transition: opacity 0.3s ease;
 }
 .promo-overlay.show { opacity: 1; }
+.promo-overlay[hidden] { display: none; }
 
 .promo-modal {
   position: relative;
@@ -1507,14 +1567,38 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
     top: 100%; left: 0; right: 0;
     background: var(--navy-deep);
     flex-direction: column;
-    padding: 24px 28px;
-    gap: 20px;
+    padding: 22px 28px 26px;
+    gap: 6px;
     border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
   }
-  .nav-cta { text-align: center; }
+  /* Bigger tap targets + dividers in the mobile dropdown */
+  .nav-links.open a {
+    width: 100%;
+    padding: 13px 4px;
+    font-size: 1.02rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.12);
+  }
+  .nav-links.open a:last-child { border-bottom: none; }
+  .nav-links.open a:not(.nav-cta)::after { display: none; }
+  .nav-links.open .nav-free,
+  .nav-links.open .nav-cta {
+    justify-content: center;
+    text-align: center;
+    margin-top: 10px;
+    padding: 13px 22px;
+    border-bottom: none;
+  }
+  .nav-links.open .nav-free { order: 9; }
+  .nav-links.open .nav-cta { order: 10; }
 
-  .hero { padding: 130px 0 100px; min-height: auto; }
-  .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+  /* Hamburger morphs into an X when the menu is open */
+  .nav-links.open ~ .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-links.open ~ .nav-toggle span:nth-child(2) { opacity: 0; }
+  .nav-links.open ~ .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .hero { padding: 120px 0 90px; min-height: auto; }
+  .hero-inner { grid-template-columns: 1fr; gap: 54px; }
   .hero-visual { max-width: 420px; margin: 0 auto; }
   .hero-trust { gap: 28px; flex-wrap: wrap; }
   .hero-scroll { display: none; }
@@ -1538,12 +1622,56 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .footer-contact { text-align: center; }
 }
 
-@media (max-width: 540px) {
-  .container, .nav-inner, .hero-inner { padding-left: 22px; padding-right: 22px; }
-  .hero-cta { flex-direction: column; align-items: stretch; }
-  .btn { width: 100%; }
-  .contact-form { padding: 30px 24px; }
-  .hero-badge { left: 50%; transform: translateX(-50%); bottom: -36px; }
+/* ===== Phones ===== */
+@media (max-width: 600px) {
+  .container, .nav-inner, .hero-inner { padding-left: 20px; padding-right: 20px; }
+
+  /* Header: keep brand on one line, tighten */
+  .nav { padding: 14px 0; }
+  .brand-text { font-size: 1.08rem; }
+  .brand-mark { width: 34px; height: 34px; font-size: 1.15rem; }
+
+  /* Hero: trim the oversized decorative note so it never crowds the text */
+  .hero::before { font-size: 11rem; top: 6%; right: -4%; opacity: 0.7; }
+  .hero { padding: 108px 0 80px; }
+  .hero h1 { margin-bottom: 22px; }
+  .lead { font-size: 1.06rem; margin-bottom: 30px; }
+  .hero-trustline { font-size: 0.9rem; margin-top: 22px; }
+
+  /* Stack CTAs full-width for easy thumbs */
+  .hero-cta { flex-direction: column; align-items: stretch; gap: 12px; }
+  .hero-cta .btn { width: 100%; }
+
+  /* Free box stays prominent and full-width */
+  .free-box { max-width: 100%; }
+
+  /* Give the floating image badge room so it doesn't collide with the next section */
+  .hero-visual { margin-bottom: 48px; }
+  .hero-badge { left: 50%; transform: translateX(-50%); bottom: -30px; padding: 14px 20px; }
+
+  /* Comfortable section rhythm on small screens */
+  .choose { padding: 44px 0; }
+  .about { padding: 50px 0 64px; }
+  .why { padding: 70px 0; }
+  .faq, .contact, .testimonials, .lessons { padding: 70px 0; }
+  .section-head { margin-bottom: 40px; }
+
+  .contact-form { padding: 30px 22px; }
+  .contact-phone { width: 100%; justify-content: center; }
+
+  /* Footer: clean stacked layout with breathing room */
+  .footer { padding: 44px 0 28px; }
+  .footer-links { gap: 18px 22px; }
+}
+
+/* ===== Small phones ===== */
+@media (max-width: 380px) {
+  .container, .nav-inner, .hero-inner { padding-left: 16px; padding-right: 16px; }
+  .brand-text { font-size: 0.98rem; }
+  .hero h1 { font-size: 2.3rem; }
+  .free-box { padding: 16px 16px; gap: 12px; }
+  .free-box-main strong { font-size: 1.2rem; }
+  .free-box-arrow { font-size: 1.2rem; }
 }
 
 /* --------- Reveal animation --------- */
