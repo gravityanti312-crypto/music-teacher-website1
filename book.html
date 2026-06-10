@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260610l" />
+<link rel="stylesheet" href="styles.css?v=20260610m" />
 </head>
 <body>
 
@@ -260,6 +260,17 @@
   // Re-check validity whenever anything changes
   form.addEventListener('input', refreshButtons);
   form.addEventListener('change', refreshButtons);
+
+  // Auto-advance to the next step when an option card is picked
+  // (instrument on step 1, format on step 2). Days/details still use the buttons.
+  form.addEventListener('change', (e) => {
+    const autoSteps = current === 0 || current === 1;
+    if (autoSteps && e.target.type === 'radio' && stepValid(current)) {
+      setTimeout(() => {
+        if (current < steps.length - 1) { current++; showStep(current); }
+      }, 280);
+    }
+  });
 
   function buildSummary() {
     const days = [...form.querySelectorAll('input[name="days"]:checked')].map(d => d.value).join(', ') || '—';
