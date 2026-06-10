@@ -1522,6 +1522,19 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
      is never cut off (primary action on top, Back below). */
   .wiz-nav { flex-direction: column-reverse; gap: 12px; }
   .wiz-nav .btn { width: 100%; min-width: 0; margin-left: 0; }
+
+  /* Smaller, more compact option cards on mobile */
+  .wiz-options { gap: 12px; }
+  .wiz-card {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 14px;
+    padding: 14px 18px;
+  }
+  .wiz-emoji { font-size: 1.8rem; }
+  .wiz-card strong { font-size: 1.2rem; }
+  .wiz-card small { margin-left: auto; }
 }
 
 /* --------- Footer --------- */
