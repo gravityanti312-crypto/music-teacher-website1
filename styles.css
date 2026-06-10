@@ -1636,7 +1636,19 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .hero { padding: 108px 0 80px; }
   .hero h1 { margin-bottom: 22px; }
   .lead { font-size: 1.06rem; margin-bottom: 30px; }
-  .hero-trustline { font-size: 0.9rem; margin-top: 22px; }
+  /* Brighter, more legible trust line over the photo backdrop */
+  .hero-trustline {
+    font-size: 0.95rem;
+    margin-top: 22px;
+    color: rgba(247, 241, 230, 0.95);
+    font-weight: 500;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+  }
+  .hero-trustline .star {
+    font-size: 1.05rem;
+    color: #ffd87a;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
+  }
 
   /* Stack CTAs full-width for easy thumbs */
   .hero-cta { flex-direction: column; align-items: stretch; gap: 12px; }
