@@ -958,6 +958,83 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   font-style: italic;
 }
 
+/* --------- Booking Page --------- */
+
+.book-hero {
+  position: relative;
+  padding: 150px 0 100px;
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-soft) 100%);
+  color: var(--cream);
+  overflow: hidden;
+}
+.book-hero::before {
+  content: "𝄞";
+  position: absolute;
+  top: 10%; right: 4%;
+  font-size: 22rem;
+  color: rgba(201, 169, 97, 0.05);
+  font-family: serif;
+  pointer-events: none;
+}
+
+.book-inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.book-copy h1 {
+  color: var(--cream);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  margin-bottom: 22px;
+}
+.book-copy .lead { margin-bottom: 36px; }
+
+.book-steps {
+  list-style: none;
+  margin-bottom: 36px;
+}
+.book-steps li {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.18);
+}
+.book-steps li:last-child { border-bottom: none; }
+.book-steps li span {
+  flex: none;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--navy-deep);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.book-steps strong {
+  display: block;
+  color: var(--cream);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+}
+.book-steps small { color: rgba(247, 241, 230, 0.7); font-size: 0.92rem; }
+
+.book-form { margin-top: 6px; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 860px) {
+  .book-inner { grid-template-columns: 1fr; gap: 48px; }
+}
+
 /* --------- Footer --------- */
 
 .footer {

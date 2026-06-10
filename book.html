@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a Lesson — Julie Durrant Music Studio</title>
+<meta name="description" content="Book a piano or violin lesson with Julie Durrant. Request your first lesson today." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="book-page">
+
+<!-- NAVIGATION -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">♪</span>
+      <span class="brand-text">Julie Durrant <em>Music Studio</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#lessons">Lessons</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#testimonials">Reviews</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html" class="nav-cta">← Back to Home</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- BOOKING -->
+<section class="book-hero">
+  <div class="hero-bg"></div>
+  <div class="container book-inner">
+
+    <div class="book-copy">
+      <p class="eyebrow gold">Reserve Your Spot</p>
+      <h1>Book a <span class="script">Lesson</span></h1>
+      <p class="lead">Fill out the form and I'll reach out within 24 hours to set up a free meet-and-greet, talk through your goals, and find a lesson time that fits your week.</p>
+
+      <ul class="book-steps">
+        <li><span>1</span><div><strong>Tell me about you</strong><small>Share your instrument, age, and experience.</small></div></li>
+        <li><span>2</span><div><strong>We connect</strong><small>A quick call or message to plan your start.</small></div></li>
+        <li><span>3</span><div><strong>Your first lesson</strong><small>Begin your musical journey — in shop or online.</small></div></li>
+      </ul>
+
+      <a href="tel:4802924799" class="contact-phone">
+        <span class="phone-icon">📞</span>
+        <div>
+          <small>Prefer to call or text?</small>
+          <strong>480-292-4799</strong>
+        </div>
+      </a>
+    </div>
+
+    <form class="contact-form book-form" onsubmit="event.preventDefault(); handleBooking(this);">
+      <h3>Request Your Lesson</h3>
+      <label>
+        <span>Your name</span>
+        <input type="text" name="name" required />
+      </label>
+      <label>
+        <span>Phone or email</span>
+        <input type="text" name="contact" required />
+      </label>
+      <div class="form-row">
+        <label>
+          <span>Instrument</span>
+          <select name="instrument" id="instrument">
+            <option>Piano</option>
+            <option>Violin</option>
+            <option>Both</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label>
+          <span>Student age</span>
+          <input type="text" name="age" placeholder="e.g. 8, or adult" />
+        </label>
+      </div>
+      <label>
+        <span>Experience level</span>
+        <select name="level">
+          <option>Total beginner</option>
+          <option>Some experience</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </label>
+      <label>
+        <span>Preferred format</span>
+        <select name="format">
+          <option>In shop</option>
+          <option>Mobile / online</option>
+          <option>Either works</option>
+        </select>
+      </label>
+      <label>
+        <span>Anything else? (optional)</span>
+        <textarea name="message" rows="3" placeholder="Goals, scheduling preferences, questions…"></textarea>
+      </label>
+      <button type="submit" class="btn btn-gold full">Request My First Lesson</button>
+      <p class="form-note">I'll get back to you within 24 hours.</p>
+    </form>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">♪</span>
+      <div>
+        <strong>Julie Durrant Music Studio</strong>
+        <small>Piano · Violin</small>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#lessons">Lessons</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#testimonials">Reviews</a>
+      <a href="index.html">Home</a>
+    </div>
+    <div class="footer-contact">
+      <a href="tel:4802924799">480-292-4799</a>
+      <small>© <span id="year"></span> Julie Durrant Music Studio. All rights reserved.</small>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile nav
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle?.addEventListener('click', () => links.classList.toggle('open'));
+
+  // Pre-select instrument from ?instrument= query param
+  const params = new URLSearchParams(window.location.search);
+  const inst = params.get('instrument');
+  if (inst) {
+    const sel = document.getElementById('instrument');
+    [...sel.options].forEach(o => { if (o.value === inst) sel.value = inst; });
+  }
+
+  // Booking submit -> prefilled email
+  function handleBooking(form) {
+    const d = new FormData(form);
+    const name = d.get('name');
+    const subject = encodeURIComponent(`Lesson booking request from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\n` +
+      `Contact: ${d.get('contact')}\n` +
+      `Instrument: ${d.get('instrument')}\n` +
+      `Student age: ${d.get('age')}\n` +
+      `Experience: ${d.get('level')}\n` +
+      `Format: ${d.get('format')}\n\n` +
+      `Message:\n${d.get('message')}`
+    );
+    window.location.href = `mailto:ryguyvaughn09@gmail.com?subject=${subject}&body=${body}`;
+    alert(`Thanks ${name}! Your booking request is ready to send — Julie will be in touch within 24 hours.`);
+    form.reset();
+  }
+</script>
+</body>
+</html>
