@@ -509,6 +509,104 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   box-shadow: 0 14px 28px rgba(201, 169, 97, 0.45);
 }
 
+/* --------- Google Reviews (under cards) --------- */
+
+.greviews {
+  display: grid;
+  grid-template-columns: 0.7fr 2.3fr;
+  gap: 30px;
+  align-items: center;
+  max-width: 1040px;
+  margin: 56px auto 0;
+}
+
+.greviews-summary { text-align: center; }
+.greviews-rating-word {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--navy);
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+.greviews-stars {
+  color: #FBBC05;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  margin-bottom: 8px;
+}
+.greviews-count { color: var(--muted); font-size: 0.95rem; margin-bottom: 10px; }
+.greviews-count strong { color: var(--navy); }
+.greviews-google {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+}
+.g-blue { color: #4285F4; }
+.g-red { color: #EA4335; }
+.g-yellow { color: #FBBC05; }
+.g-green { color: #34A853; }
+
+.greviews-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.greview {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px 22px 24px;
+  box-shadow: 0 10px 28px rgba(26, 43, 74, 0.08);
+}
+.greview-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.greview-avatar {
+  flex: none;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.greview-id { flex: 1; min-width: 0; }
+.greview-id strong { display: block; color: var(--navy); font-size: 0.98rem; }
+.greview-id small { color: var(--muted); font-size: 0.82rem; }
+.greview-g {
+  flex: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #4285F4;
+}
+.greview-stars {
+  color: #FBBC05;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+.greview p {
+  color: var(--ink);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.greview-more {
+  color: var(--muted);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .greviews { grid-template-columns: 1fr; gap: 28px; }
+  .greviews-cards { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
+
 /* --------- About --------- */
 
 .about { padding: 120px 0; background: var(--cream-soft); }
