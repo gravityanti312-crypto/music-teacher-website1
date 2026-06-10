@@ -241,8 +241,8 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 
 .hero {
   position: relative;
-  min-height: 100vh;
-  padding: 140px 0 80px;
+  min-height: auto;
+  padding: 130px 0 60px;
   background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-soft) 100%);
   color: var(--cream);
   overflow: hidden;
@@ -378,6 +378,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 .hero-badge small { color: var(--muted); font-size: 0.8rem; }
 
 .hero-scroll {
+  display: none;
   position: absolute;
   bottom: 30px;
   left: 50%;
@@ -404,10 +405,11 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 /* --------- Chooser --------- */
 
 .choose {
-  padding: 100px 0;
+  padding: 48px 0 90px;
   background: var(--cream-soft);
   position: relative;
 }
+.choose .section-head { margin-bottom: 40px; }
 
 .choose-cards {
   display: grid;
