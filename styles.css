@@ -226,6 +226,23 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 }
 .nav-cta:hover { transform: translateY(-1px); }
 
+.nav-free {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold-light) !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 9px 16px;
+  border: 1px solid rgba(201, 169, 97, 0.5);
+  border-radius: 50px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+.nav-free:hover {
+  background: rgba(201, 169, 97, 0.14);
+  transform: translateY(-1px);
+}
+
 .nav-toggle {
   display: none;
   background: none; border: none; cursor: pointer;
@@ -303,26 +320,6 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 56px;
-}
-
-.hero-freebadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, var(--gold-light), var(--gold));
-  color: var(--navy-deep);
-  font-weight: 600;
-  font-size: 0.9rem;
-  letter-spacing: 0.02em;
-  padding: 9px 18px;
-  border-radius: 50px;
-  margin-bottom: 22px;
-  box-shadow: 0 8px 20px rgba(201, 169, 97, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-.hero-freebadge:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(201, 169, 97, 0.45);
 }
 
 .hero-place { color: var(--gold-light); font-weight: 600; }
