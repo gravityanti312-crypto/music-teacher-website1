@@ -1645,8 +1645,21 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   /* Free box stays prominent and full-width */
   .free-box { max-width: 100%; }
 
-  /* Hide the hero photo card on mobile (kept on desktop) */
+  /* Hide the side photo card on mobile (kept on desktop) */
   .hero-visual { display: none; }
+
+  /* Instead, show the piano photo as a darkened full-screen backdrop
+     BEHIND the hero text — the first thing you see on mobile. */
+  .hero-bg {
+    background-image:
+      linear-gradient(rgba(15, 29, 53, 0.80), rgba(15, 29, 53, 0.90)),
+      url('https://images.unsplash.com/photo-1552422535-c45813c61732?w=900&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  /* Fade the giant decorative note so it doesn't fight the photo */
+  .hero::before { opacity: 0.35; }
 
   /* Comfortable section rhythm on small screens */
   .choose { padding: 44px 0; }
