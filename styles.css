@@ -1517,6 +1517,11 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .wiz-fields { grid-template-columns: 1fr; }
   .wiz-step-dot small { display: none; }
   .wiz-day span { width: 62px; height: 52px; }
+
+  /* Stack the wizard buttons full-width so "Request My Lesson"
+     is never cut off (primary action on top, Back below). */
+  .wiz-nav { flex-direction: column-reverse; gap: 12px; }
+  .wiz-nav .btn { width: 100%; min-width: 0; margin-left: 0; }
 }
 
 /* --------- Footer --------- */
