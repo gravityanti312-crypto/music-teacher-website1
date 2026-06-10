@@ -1659,6 +1659,9 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .hero-cta { flex-direction: column; align-items: stretch; gap: 12px; }
   .hero-cta .btn { width: 100%; }
 
+  /* On mobile the call button shows just the number (no "Call Julie") */
+  .call-name { display: none; }
+
   /* Free box stays prominent and full-width */
   .free-box { max-width: 100%; }
 
