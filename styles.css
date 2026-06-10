@@ -305,6 +305,19 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   margin-bottom: 56px;
 }
 
+.hero-place { color: var(--gold-light); font-weight: 600; }
+
+.hero-trustline {
+  margin-top: 26px;
+  font-size: 0.95rem;
+  color: rgba(247, 241, 230, 0.65);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.hero-trustline .star { color: #ffcf6b; }
+
 .hero-trust {
   display: flex;
   gap: 48px;
