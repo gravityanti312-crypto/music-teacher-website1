@@ -234,13 +234,15 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   font-weight: 600;
   font-size: 0.9rem;
   padding: 9px 16px;
-  border: 1px solid rgba(201, 169, 97, 0.5);
+  border: 2px solid var(--gold);
   border-radius: 50px;
-  transition: background 0.25s ease, transform 0.2s ease;
+  box-shadow: 0 0 0 1px rgba(201, 169, 97, 0.25);
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
 }
 .nav-free:hover {
-  background: rgba(201, 169, 97, 0.14);
+  background: rgba(201, 169, 97, 0.16);
   transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(201, 169, 97, 0.35);
 }
 
 .nav-toggle {
