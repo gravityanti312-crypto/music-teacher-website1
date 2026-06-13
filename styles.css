@@ -1546,7 +1546,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   border-top: 1px solid rgba(201, 169, 97, 0.2);
 }
 .footer-cta {
-  display: flex;
+  display: none; /* shown on mobile only */
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
@@ -1743,6 +1743,10 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   /* Footer: clean stacked layout with breathing room */
   .footer { padding: 44px 0 28px; }
   .footer-links { gap: 18px 22px; }
+
+  /* Show the Book Now / Call Julie buttons on mobile only */
+  .footer-cta { display: flex; }
+  .footer-cta .btn { flex: 1 1 auto; min-width: 0; }
 }
 
 /* ===== Small phones ===== */
