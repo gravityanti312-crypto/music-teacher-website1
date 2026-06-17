@@ -528,7 +528,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   border-radius: 18px;
   background:
     linear-gradient(135deg, rgba(15, 29, 53, 0.18), rgba(15, 29, 53, 0.05)),
-    url('images/hero.jpg') center/cover;
+    url('images/hero.jpg?v=2') center/cover;
   position: relative;
 }
 .hero-img-wrap::after {
@@ -1719,7 +1719,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .hero-bg {
     background-image:
       linear-gradient(rgba(15, 29, 53, 0.82), rgba(15, 29, 53, 0.72)),
-      url('images/hero.jpg');
+      url('images/hero.jpg?v=2');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
