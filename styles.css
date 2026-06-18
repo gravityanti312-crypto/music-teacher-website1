@@ -1856,7 +1856,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
     padding: 108px 0 40px;
     background-image:
       linear-gradient(180deg, rgba(15, 29, 53, 0.72) 0%, rgba(15, 29, 53, 0.82) 100%),
-      url('images/hero-bg.jpg?v=1');
+      url('images/hero-bg.jpg?v=2');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
