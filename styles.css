@@ -825,10 +825,10 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 
 /* One-at-a-time slider — full width on desktop */
 .testi-slider { max-width: 100%; margin: 0 auto; }
-.testi-viewport { overflow: hidden; }
+.testi-viewport { overflow: hidden; transition: height 0.35s ease; }
 .testi-track {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   gap: 22px;
   transition: transform 0.45s ease;
 }
@@ -909,6 +909,9 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 
 /* 1 visible on mobile */
 @media (max-width: 600px) {
+  .testi { padding: 32px 16px 30px; border-radius: 20px; margin-top: 48px; }
+  .testi::before { font-size: 11rem; top: -30px; }
+  .testi-head { margin-bottom: 30px; }
   .testi-slider { max-width: 100%; }
   .testi-track { gap: 0; }
   .testi-track .testi-card { flex: 0 0 100%; }

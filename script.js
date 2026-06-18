@@ -80,7 +80,17 @@ revealEls.forEach(el => io.observe(el));
     const step = cards[0].getBoundingClientRect().width + gap;
     const visible = Math.max(1, Math.round(viewport.clientWidth / step));
     const maxIndex = Math.max(0, cards.length - visible);
-    return { step, maxIndex };
+    return { step, visible, maxIndex };
+  }
+
+  // Size the frame to the cards currently in view (no tall empty gaps)
+  function applyHeights() {
+    const { visible } = metrics();
+    cards.forEach(c => c.style.minHeight = '');
+    let maxH = 0;
+    for (let k = i; k < i + visible && k < cards.length; k++) maxH = Math.max(maxH, cards[k].offsetHeight);
+    for (let k = i; k < i + visible && k < cards.length; k++) cards[k].style.minHeight = maxH + 'px';
+    viewport.style.height = maxH + 'px';
   }
 
   function buildDots(maxIndex) {
@@ -101,6 +111,7 @@ revealEls.forEach(el => io.observe(el));
     i = n;
     track.style.transform = `translateX(-${i * step}px)`;
     [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
+    applyHeights();
   }
 
   function refresh() {
@@ -133,6 +144,8 @@ revealEls.forEach(el => io.observe(el));
   // Recompute on resize (visible count changes between breakpoints)
   let rt;
   window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(refresh, 150); });
+  // Recompute once fonts/layout settle so heights are accurate
+  window.addEventListener('load', refresh);
 
   refresh();
 })();
