@@ -65,6 +65,15 @@ revealEls.forEach(el => io.observe(el));
   const nextBtn = document.getElementById('testiNext');
   let i = 0;
 
+  // Add a 5-star rating to the top of each review card
+  cards.forEach(c => {
+    const stars = document.createElement('div');
+    stars.className = 'testi-stars';
+    stars.textContent = '★★★★★';
+    const text = c.querySelector('.testi-text');
+    if (text) text.before(stars);
+  });
+
   // How wide one card step is (card + gap), and how many fit / max index
   function metrics() {
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
