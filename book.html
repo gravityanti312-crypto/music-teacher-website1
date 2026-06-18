@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Dancing+Script:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20260611c" />
+<link rel="stylesheet" href="styles.css?v=20260611d" />
 </head>
 <body>
 
@@ -46,11 +46,9 @@
     <div class="wiz-progress">
       <div class="wiz-step-dot active" data-dot="1"><span>1</span><small>Instrument</small></div>
       <div class="wiz-bar"><i></i></div>
-      <div class="wiz-step-dot" data-dot="2"><span>2</span><small>Location</small></div>
+      <div class="wiz-step-dot" data-dot="2"><span>2</span><small>Days</small></div>
       <div class="wiz-bar"><i></i></div>
-      <div class="wiz-step-dot" data-dot="3"><span>3</span><small>Days</small></div>
-      <div class="wiz-bar"><i></i></div>
-      <div class="wiz-step-dot" data-dot="4"><span>4</span><small>Your Info</small></div>
+      <div class="wiz-step-dot" data-dot="3"><span>3</span><small>Your Info</small></div>
     </div>
 
     <form id="wizard" onsubmit="event.preventDefault(); submitBooking();">
@@ -77,26 +75,6 @@
 
       <!-- STEP 2 -->
       <div class="wiz-step" data-step="2" hidden>
-        <h2>Where would you like your lessons?</h2>
-        <p class="wiz-sub">At Julie's studio or in the comfort of your home.</p>
-        <div class="wiz-options">
-          <label class="wiz-option">
-            <input type="radio" name="format" value="At the studio" required />
-            <div class="wiz-card"><span class="wiz-emoji">🎹</span><strong>At the Studio</strong><small>Julie's studio</small></div>
-          </label>
-          <label class="wiz-option">
-            <input type="radio" name="format" value="In your home" />
-            <div class="wiz-card"><span class="wiz-emoji">🏠</span><strong>In Your Home</strong><small>We come to you</small></div>
-          </label>
-          <label class="wiz-option">
-            <input type="radio" name="format" value="Either works" />
-            <div class="wiz-card"><span class="wiz-emoji">✨</span><strong>Either</strong><small>I'm flexible</small></div>
-          </label>
-        </div>
-      </div>
-
-      <!-- STEP 3 -->
-      <div class="wiz-step" data-step="3" hidden>
         <h2>What days work best for you?</h2>
         <p class="wiz-sub">Choose any days that fit your schedule.</p>
         <div class="wiz-days">
@@ -120,8 +98,8 @@
         </label>
       </div>
 
-      <!-- STEP 4 -->
-      <div class="wiz-step" data-step="4" hidden>
+      <!-- STEP 3 -->
+      <div class="wiz-step" data-step="3" hidden>
         <h2>Last step — your details</h2>
         <p class="wiz-sub">So Julie can reach out to confirm your spot.</p>
         <div class="wiz-fields">
@@ -212,12 +190,11 @@
   function stepValid(i) {
     const step = steps[i];
     if (i === 0) return !!form.instrument.value;
-    if (i === 1) return !!form.format.value;
-    if (i === 2) {
+    if (i === 1) {
       const anyDay = form.querySelectorAll('input[name="days"]:checked').length > 0;
       return anyDay && !!form.time.value;
     }
-    if (i === 3) {
+    if (i === 2) {
       const name = form.name.value.trim();
       const phone = form.phone.value.trim();
       const email = form.email.value.trim();
@@ -261,10 +238,9 @@
   form.addEventListener('input', refreshButtons);
   form.addEventListener('change', refreshButtons);
 
-  // Auto-advance to the next step when an option card is picked
-  // (instrument on step 1, format on step 2). Days/details still use the buttons.
+  // Auto-advance after picking an instrument (days/details still use the buttons)
   form.addEventListener('change', (e) => {
-    const autoSteps = current === 0 || current === 1;
+    const autoSteps = current === 0;
     if (autoSteps && e.target.type === 'radio' && stepValid(current)) {
       setTimeout(() => {
         if (current < steps.length - 1) { current++; showStep(current); }
@@ -278,14 +254,13 @@
       <h4>Your booking</h4>
       <ul>
         <li><strong>Instrument:</strong> ${form.instrument.value || '—'}</li>
-        <li><strong>Format:</strong> ${form.format.value || '—'}</li>
         <li><strong>Days:</strong> ${days}</li>
         <li><strong>Time:</strong> ${form.time.value || '—'}</li>
       </ul>`;
   }
 
   function submitBooking() {
-    if (!stepValid(3)) return;
+    if (!stepValid(2)) return;
     const days = [...form.querySelectorAll('input[name="days"]:checked')].map(d => d.value).join(', ');
     const subject = encodeURIComponent(`Lesson booking from ${form.name.value}`);
     const body = encodeURIComponent(
@@ -294,7 +269,6 @@
       `Email: ${form.email.value}\n` +
       `Student age: ${form.age.value}\n\n` +
       `Instrument: ${form.instrument.value}\n` +
-      `Format: ${form.format.value}\n` +
       `Preferred days: ${days}\n` +
       `Preferred time: ${form.time.value}\n\n` +
       `Message:\n${form.message.value}`
