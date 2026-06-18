@@ -993,6 +993,18 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   box-shadow: var(--shadow-md);
 }
 
+/* Mobile only: photo sits between the heading and the bio paragraphs */
+@media (max-width: 600px) {
+  .two-col { display: flex; flex-direction: column; gap: 0; }
+  .about-copy { display: contents; }
+  .about-copy .eyebrow { order: 1; }
+  .about-copy h2 { order: 2; }
+  .about-photo { order: 3; margin: 4px auto 26px; }
+  .about-copy p:not(.eyebrow),
+  .about-copy .checklist,
+  .about-copy .btn { order: 4; }
+}
+
 .about-copy h2 { margin-bottom: 24px; }
 .about-copy p { color: var(--muted); margin-bottom: 18px; font-size: 1.05rem; }
 
