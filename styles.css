@@ -514,6 +514,9 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 
 /* Hero visual */
 .hero-visual { position: relative; }
+
+/* Photo under the hero text — mobile only (hidden on desktop) */
+.hero-photo-mobile { display: none; }
 .hero-card {
   position: relative;
   aspect-ratio: 4/5;
@@ -1880,21 +1883,24 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   /* Free box stays prominent and full-width */
   .free-box { max-width: 100%; }
 
-  /* Show the photo as a clear, bright framed image at the TOP of the hero
-     (no dark overlay), with the text + buttons below it on the navy. */
+  /* Remove the photo card from the top of the hero on mobile */
   .hero-inner { display: flex; flex-direction: column; }
-  .hero-visual {
+  .hero-visual { display: none; }
+
+  /* Show the photo as a clear, framed image BELOW the hero wording */
+  .hero-photo-mobile {
     display: block;
-    order: -1;
-    max-width: 100%;
-    margin: 0 auto 14px;
+    background: linear-gradient(180deg, var(--navy-soft) 0%, var(--navy) 100%);
+    padding: 4px 20px 44px;
   }
-  .hero-card { aspect-ratio: auto; height: auto; padding: 8px; }
-  /* Wide, shorter banner crop */
-  .hero-img-wrap { height: 210px; border-radius: 12px; background-position: center 35%; }
-  .hero-img-wrap::after { font-size: 2.4rem; bottom: 12px; left: 16px; }
-  /* No "Now Enrolling" badge under the mobile photo */
-  .hero-badge { display: none; }
+  .hero-photo-mobile img {
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    box-shadow: var(--shadow-lg);
+  }
 
   /* Hide the About photo collage on mobile (it leaves a blank gap there) */
   .about-img { display: none; }
