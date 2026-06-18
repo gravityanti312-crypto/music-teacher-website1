@@ -54,29 +54,51 @@ revealEls.forEach(el => io.observe(el));
   }
 })();
 
-// Testimonials slider (one review at a time, slide side to side)
+// Testimonials slider (shows multiple, advances one card at a time)
 (function () {
   const track = document.getElementById('testiTrack');
   if (!track) return;
   const cards = [...track.children];
+  const viewport = track.parentElement;
   const dotsWrap = document.getElementById('testiDots');
   const prevBtn = document.getElementById('testiPrev');
   const nextBtn = document.getElementById('testiNext');
   let i = 0;
 
-  cards.forEach((_, idx) => {
-    const b = document.createElement('button');
-    b.setAttribute('aria-label', 'Go to review ' + (idx + 1));
-    if (idx === 0) b.classList.add('active');
-    b.addEventListener('click', () => go(idx));
-    dotsWrap.appendChild(b);
-  });
-  const dots = [...dotsWrap.children];
+  // How wide one card step is (card + gap), and how many fit / max index
+  function metrics() {
+    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    const step = cards[0].getBoundingClientRect().width + gap;
+    const visible = Math.max(1, Math.round(viewport.clientWidth / step));
+    const maxIndex = Math.max(0, cards.length - visible);
+    return { step, maxIndex };
+  }
+
+  function buildDots(maxIndex) {
+    dotsWrap.innerHTML = '';
+    for (let k = 0; k <= maxIndex; k++) {
+      const b = document.createElement('button');
+      b.setAttribute('aria-label', 'Go to review ' + (k + 1));
+      if (k === i) b.classList.add('active');
+      b.addEventListener('click', () => { go(k); restart(); });
+      dotsWrap.appendChild(b);
+    }
+  }
 
   function go(n) {
-    i = (n + cards.length) % cards.length;
-    track.style.transform = `translateX(-${i * 100}%)`;
-    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+    const { step, maxIndex } = metrics();
+    if (n > maxIndex) n = 0;          // wrap to start
+    if (n < 0) n = maxIndex;          // wrap to end
+    i = n;
+    track.style.transform = `translateX(-${i * step}px)`;
+    [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+
+  function refresh() {
+    const { maxIndex } = metrics();
+    if (i > maxIndex) i = maxIndex;
+    buildDots(maxIndex);
+    go(i);
   }
 
   prevBtn.addEventListener('click', () => { go(i - 1); restart(); });
@@ -98,6 +120,12 @@ revealEls.forEach(el => io.observe(el));
     if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); restart(); }
     startX = null;
   }, { passive: true });
+
+  // Recompute on resize (visible count changes between breakpoints)
+  let rt;
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(refresh, 150); });
+
+  refresh();
 })();
 
 // Form handler
