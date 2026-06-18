@@ -968,6 +968,31 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   transform: translate(-50%, -50%);
 }
 
+/* About — framed recital photo */
+.about-photo {
+  position: relative;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.about-photo img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius-lg);
+  border: 8px solid #fff;
+  box-shadow: var(--shadow-lg);
+}
+.about-photo-badge {
+  position: absolute;
+  bottom: -22px; right: -22px;
+  width: 64px; height: 64px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--navy-deep);
+  font-size: 1.8rem;
+  border-radius: 50%;
+  box-shadow: var(--shadow-md);
+}
+
 .about-copy h2 { margin-bottom: 24px; }
 .about-copy p { color: var(--muted); margin-bottom: 18px; font-size: 1.05rem; }
 
