@@ -802,11 +802,49 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 .testi-head h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
 .testi-head .section-sub { margin-top: 12px; }
 
-.testi-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+/* Slim one-at-a-time slider */
+.testi-slider { max-width: 560px; margin: 0 auto; }
+.testi-viewport { overflow: hidden; }
+.testi-track {
+  display: flex;
+  align-items: stretch;
+  transition: transform 0.45s ease;
 }
+.testi-track .testi-card { flex: 0 0 100%; width: 100%; }
+
+.testi-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 24px;
+}
+.testi-arrow {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  background: #fff;
+  color: var(--gold-deep);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.testi-arrow:hover { background: var(--gold); color: #fff; transform: translateY(-2px); }
+.testi-dots { display: flex; gap: 9px; }
+.testi-dots button {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(168, 137, 63, 0.3);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.testi-dots button.active { background: var(--gold); transform: scale(1.3); }
 .testi-card {
   background: #fff;
   border: 1px solid var(--line);
@@ -840,10 +878,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 .testi-name { font-weight: 600; font-size: 0.96rem; color: var(--navy); }
 .testi-detail { color: var(--muted); font-size: 0.84rem; margin-top: 2px; }
 
-@media (max-width: 860px) { .testi-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) {
-  .testi-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
-}
+@media (max-width: 600px) { .testi-slider { max-width: 100%; } }
 
 /* --------- About --------- */
 

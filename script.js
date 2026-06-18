@@ -54,6 +54,52 @@ revealEls.forEach(el => io.observe(el));
   }
 })();
 
+// Testimonials slider (one review at a time, slide side to side)
+(function () {
+  const track = document.getElementById('testiTrack');
+  if (!track) return;
+  const cards = [...track.children];
+  const dotsWrap = document.getElementById('testiDots');
+  const prevBtn = document.getElementById('testiPrev');
+  const nextBtn = document.getElementById('testiNext');
+  let i = 0;
+
+  cards.forEach((_, idx) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', 'Go to review ' + (idx + 1));
+    if (idx === 0) b.classList.add('active');
+    b.addEventListener('click', () => go(idx));
+    dotsWrap.appendChild(b);
+  });
+  const dots = [...dotsWrap.children];
+
+  function go(n) {
+    i = (n + cards.length) % cards.length;
+    track.style.transform = `translateX(-${i * 100}%)`;
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+
+  prevBtn.addEventListener('click', () => { go(i - 1); restart(); });
+  nextBtn.addEventListener('click', () => { go(i + 1); restart(); });
+
+  // Auto-advance, pause on hover
+  let timer = setInterval(() => go(i + 1), 6000);
+  function restart() { clearInterval(timer); timer = setInterval(() => go(i + 1), 6000); }
+  const slider = track.closest('.testi-slider');
+  slider.addEventListener('mouseenter', () => clearInterval(timer));
+  slider.addEventListener('mouseleave', restart);
+
+  // Swipe on touch devices
+  let startX = null;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); restart(); }
+    startX = null;
+  }, { passive: true });
+})();
+
 // Form handler
 function handleSubmit(form) {
   const data = new FormData(form);
