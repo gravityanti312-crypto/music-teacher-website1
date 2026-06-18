@@ -1880,21 +1880,32 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   /* Free box stays prominent and full-width */
   .free-box { max-width: 100%; }
 
-  /* Hide the side photo card on mobile (kept on desktop) */
-  .hero-visual { display: none; }
-
-  /* Instead, show the piano photo as a darkened full-screen backdrop
-     BEHIND the hero text — the first thing you see on mobile. */
-  .hero-bg {
-    background-image:
-      linear-gradient(rgba(15, 29, 53, 0.82), rgba(15, 29, 53, 0.72)),
-      url('images/hero.jpg?v=2');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  /* Show the photo as a clear, bright framed image at the TOP of the hero
+     (no dark overlay), with the text + buttons below it on the navy. */
+  .hero-inner { display: flex; flex-direction: column; }
+  .hero-visual {
+    display: block;
+    order: -1;
+    max-width: 300px;
+    margin: 0 auto 8px;
   }
-  /* Fade the giant decorative note so it doesn't fight the photo */
-  .hero::before { opacity: 0.35; }
+  .hero-card { aspect-ratio: auto; height: auto; padding: 10px; }
+  .hero-img-wrap { height: 300px; border-radius: 14px; }
+  .hero-img-wrap::after { font-size: 2.6rem; bottom: 14px; left: 18px; }
+  .hero-badge {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin: 12px 0 0;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+  .hero-badge .treble { font-size: 1.8rem; }
+  .hero-badge strong { font-size: 1.05rem; }
+  .hero-badge small { font-size: 0.8rem; }
 
   /* Hide the About photo collage on mobile (it leaves a blank gap there) */
   .about-img { display: none; }
