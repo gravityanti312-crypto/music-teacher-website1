@@ -1931,3 +1931,12 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Mobile: tighten the "Meet Your Teacher" heading + photo spacing
+   (overrides the generic .two-col 50px gap above) */
+@media (max-width: 600px) {
+  .about .two-col { gap: 0; }
+  .about-copy .eyebrow { margin-bottom: 10px; }
+  .about-copy h2 { margin-bottom: 14px; }
+  .about-photo { margin: 0 auto 22px; }
+}
