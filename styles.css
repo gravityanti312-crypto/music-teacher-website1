@@ -1313,6 +1313,13 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   font-size: 1.05rem;
   margin-bottom: 32px;
 }
+.contact-note {
+  font-size: 0.95rem !important;
+  color: rgba(247, 241, 230, 0.72) !important;
+  border-left: 2px solid var(--gold);
+  padding-left: 14px;
+  margin-top: -16px;
+}
 
 .contact-phone {
   display: inline-flex;
