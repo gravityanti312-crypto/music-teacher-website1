@@ -792,6 +792,59 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .greviews-cards { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
 }
 
+/* --------- Testimonials (studio reviews) --------- */
+.testi { max-width: 1040px; margin: 56px auto 0; }
+.testi-head { text-align: center; max-width: 580px; margin: 0 auto 40px; }
+.testi-head .eyebrow { justify-content: center; color: var(--gold-deep); }
+.testi-head .eyebrow::after {
+  content: ""; width: 30px; height: 1px; background: var(--gold);
+}
+.testi-head h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+.testi-head .section-sub { margin-top: 12px; }
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.testi-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 30px 28px 26px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 28px rgba(26, 43, 74, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.testi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.testi-mark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem; line-height: 0.5;
+  color: var(--gold-light);
+  height: 30px; margin-bottom: 12px;
+  user-select: none;
+}
+.testi-text { font-size: 1rem; line-height: 1.65; color: #413d37; flex: 1; }
+.testi-foot {
+  display: flex; align-items: center; gap: 13px;
+  margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line);
+}
+.testi-ava {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  color: var(--navy-deep);
+  display: grid; place-items: center;
+  font-weight: 600; font-size: 1rem; flex-shrink: 0;
+}
+.testi-name { font-weight: 600; font-size: 0.96rem; color: var(--navy); }
+.testi-detail { color: var(--muted); font-size: 0.84rem; margin-top: 2px; }
+
+@media (max-width: 860px) { .testi-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) {
+  .testi-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
+}
+
 /* --------- About --------- */
 
 .about { padding: 55px 0 110px; background: var(--cream-soft); }
