@@ -259,22 +259,39 @@
       </ul>`;
   }
 
-  function submitBooking() {
+  async function submitBooking() {
     if (!stepValid(2)) return;
     const days = [...form.querySelectorAll('input[name="days"]:checked')].map(d => d.value).join(', ');
-    const subject = encodeURIComponent(`Lesson booking from ${form.name.value}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name.value}\n` +
-      `Phone: ${form.phone.value}\n` +
-      `Email: ${form.email.value}\n` +
-      `Student age: ${form.age.value}\n\n` +
-      `Instrument: ${form.instrument.value}\n` +
-      `Preferred days: ${days}\n` +
-      `Preferred time: ${form.time.value}\n\n` +
-      `Message:\n${form.message.value}`
-    );
-    location.href = `mailto:ryguyvaughn09@gmail.com?subject=${subject}&body=${body}`;
-    alert(`Thanks ${form.name.value}! Your booking request is ready to send — Julie will be in touch within 24 hours to confirm your time and share the home studio address.`);
+    const payload = {
+      name: form.name.value.trim(),
+      phone: form.phone.value.trim(),
+      email: form.email.value.trim(),
+      age: form.age.value.trim(),
+      instrument: form.instrument.value,
+      days,
+      time: form.time.value,
+      message: form.message.value.trim(),
+    };
+
+    const btn = submitBtn;
+    const originalText = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    try {
+      const resp = await fetch('/api/send-booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!resp.ok) throw new Error('Request failed');
+      alert(`Thanks ${payload.name}! Your booking request has been sent — Julie will be in touch within 24 hours to confirm your time and share the home studio address.`);
+      form.reset();
+      current = 0;
+      showStep(0);
+    } catch (err) {
+      alert(`Sorry, something went wrong sending your request. Please call or text Julie at 480-292-4799 and she'll get you booked.`);
+      if (btn) { btn.disabled = false; btn.textContent = originalText; }
+    }
   }
 
   showStep(0);
