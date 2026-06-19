@@ -521,7 +521,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 /* Photo under the "Why Me" grid (Performance Opportunities) — desktop + mobile */
 .why-photo {
   max-width: 420px;
-  margin: 56px auto 0;
+  margin: 56px 0 0 auto; /* right-aligned on desktop */
 }
 .why-photo img {
   width: 100%;
@@ -1918,6 +1918,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .choose { padding: 44px 0; }
   .about { padding: 50px 0 64px; }
   .why { padding: 70px 0; }
+  .why-photo { margin: 40px auto 0; } /* centered on mobile */
   .faq, .contact, .testimonials, .lessons { padding: 70px 0; }
   .section-head { margin-bottom: 40px; }
 
