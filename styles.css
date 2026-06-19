@@ -519,9 +519,25 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
 .hero-photo-mobile { display: none; }
 
 /* Photo under the "Why Me" grid (Performance Opportunities) — desktop + mobile */
+/* Why-Me: text on the left, photo on the right (desktop) */
+.why-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 0.95fr;
+  gap: 56px;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+.why-layout .why-grid {
+  grid-template-columns: 1fr;
+  gap: 34px;
+  max-width: none;
+  margin: 0;
+}
 .why-photo {
   max-width: 420px;
-  margin: 56px 0 0 auto; /* right-aligned on desktop */
+  margin: 0;
+  justify-self: center;
 }
 .why-photo img {
   width: 100%;
@@ -1845,6 +1861,7 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .card.featured:hover { transform: translateY(-8px); }
 
   .why-grid { grid-template-columns: 1fr; gap: 36px; }
+  .why-layout { grid-template-columns: 1fr; gap: 44px; } /* stack: text then photo */
   .quote-grid { grid-template-columns: 1fr; }
 
   .footer-inner { grid-template-columns: 1fr; text-align: center; gap: 28px; }
