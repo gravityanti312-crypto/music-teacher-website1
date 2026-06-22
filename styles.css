@@ -965,6 +965,8 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   .testi-slider { max-width: 100%; }
   .testi-track { gap: 0; }
   .testi-track .testi-card { flex: 0 0 100%; }
+  /* Collapse long reviews more tightly on small screens */
+  .testi-text.clamp { -webkit-line-clamp: 5; }
 }
 
 /* --------- About --------- */
