@@ -284,7 +284,7 @@
         body: JSON.stringify(payload),
       });
       if (!resp.ok) throw new Error('Request failed');
-      alert(`Thanks ${payload.name}! Your booking request has been sent — Julie will be in touch within 24 hours to confirm your time and share the home studio address.`);
+      alert(`Thanks ${payload.name}! Your booking request has been sent — please check your email for a confirmation. Julie will be in touch within 24 hours to confirm your time and share the home studio address.`);
       form.reset();
       current = 0;
       showStep(0);
