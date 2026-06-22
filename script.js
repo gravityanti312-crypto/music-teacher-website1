@@ -65,14 +65,42 @@ revealEls.forEach(el => io.observe(el));
   const nextBtn = document.getElementById('testiNext');
   let i = 0;
 
-  // Add a 5-star rating to the top of each review card
+  // Add a 5-star rating to the top of each review card + a "Read more" toggle
   cards.forEach(c => {
     const stars = document.createElement('div');
     stars.className = 'testi-stars';
     stars.textContent = '★★★★★';
     const text = c.querySelector('.testi-text');
-    if (text) text.before(stars);
+    if (!text) return;
+    text.before(stars);
+
+    text.classList.add('clamp');
+    const more = document.createElement('button');
+    more.type = 'button';
+    more.className = 'testi-readmore';
+    more.textContent = 'Read more';
+    more.hidden = true;
+    more.addEventListener('click', () => {
+      const collapsed = text.classList.toggle('clamp');
+      more.textContent = collapsed ? 'Read more' : 'Show less';
+      applyHeights();
+    });
+    text.after(more);
   });
+
+  // Show the "Read more" button only on reviews that are actually truncated
+  function updateReadMore() {
+    cards.forEach(c => {
+      const text = c.querySelector('.testi-text');
+      const more = c.querySelector('.testi-readmore');
+      if (!text || !more) return;
+      text.classList.add('clamp');
+      more.textContent = 'Read more';
+      const truncated = text.scrollHeight > text.clientHeight + 2;
+      more.hidden = !truncated;
+      if (!truncated) text.classList.remove('clamp');
+    });
+  }
 
   // How wide one card step is (card + gap), and how many fit / max index
   function metrics() {
@@ -115,6 +143,7 @@ revealEls.forEach(el => io.observe(el));
   }
 
   function refresh() {
+    updateReadMore();
     const { maxIndex } = metrics();
     if (i > maxIndex) i = maxIndex;
     buildDots(maxIndex);

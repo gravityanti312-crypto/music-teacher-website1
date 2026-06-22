@@ -924,6 +924,25 @@ em { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--
   user-select: none;
 }
 .testi-text { font-size: 1rem; line-height: 1.65; color: #413d37; flex: 1; }
+.testi-text.clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.testi-readmore {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 8px 0 0;
+  margin-bottom: 2px;
+  color: var(--gold-deep);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.testi-readmore:hover { color: var(--gold); text-decoration: underline; }
 .testi-foot {
   display: flex; align-items: center; gap: 13px;
   margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line);
