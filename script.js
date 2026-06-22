@@ -162,9 +162,11 @@ revealEls.forEach(el => io.observe(el));
   prevBtn.addEventListener('click', () => { go(i - 1); restart(); });
   nextBtn.addEventListener('click', () => { go(i + 1); restart(); });
 
-  // Auto-advance on desktop only (paused on hover). On mobile it stays put
-  // until the visitor swipes or taps the arrows.
-  const isMobile = () => window.matchMedia('(max-width: 600px)').matches;
+  // Auto-advance on desktop only (paused on hover). On mobile / any touch
+  // device it stays put until the visitor swipes or taps the arrows.
+  const isMobile = () =>
+    window.matchMedia('(max-width: 600px)').matches ||
+    window.matchMedia('(hover: none), (pointer: coarse)').matches;
   let timer = null;
   function startAuto() { clearInterval(timer); if (!isMobile()) timer = setInterval(() => go(i + 1), 6000); }
   function restart() { startAuto(); }
