@@ -124,9 +124,13 @@ revealEls.forEach(el => io.observe(el));
   prevBtn.addEventListener('click', () => { go(i - 1); restart(); });
   nextBtn.addEventListener('click', () => { go(i + 1); restart(); });
 
-  // Auto-advance, pause on hover
-  let timer = setInterval(() => go(i + 1), 6000);
-  function restart() { clearInterval(timer); timer = setInterval(() => go(i + 1), 6000); }
+  // Auto-advance on desktop only (paused on hover). On mobile it stays put
+  // until the visitor swipes or taps the arrows.
+  const isMobile = () => window.matchMedia('(max-width: 600px)').matches;
+  let timer = null;
+  function startAuto() { clearInterval(timer); if (!isMobile()) timer = setInterval(() => go(i + 1), 6000); }
+  function restart() { startAuto(); }
+  startAuto();
   const slider = track.closest('.testi-slider');
   slider.addEventListener('mouseenter', () => clearInterval(timer));
   slider.addEventListener('mouseleave', restart);
@@ -143,7 +147,7 @@ revealEls.forEach(el => io.observe(el));
 
   // Recompute on resize (visible count changes between breakpoints)
   let rt;
-  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(refresh, 150); });
+  window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { refresh(); startAuto(); }, 150); });
   // Recompute once fonts/layout settle so heights are accurate
   window.addEventListener('load', refresh);
 
