@@ -82,7 +82,8 @@ revealEls.forEach(el => io.observe(el));
     more.hidden = true;
     more.addEventListener('click', () => {
       const collapsed = text.classList.toggle('clamp');
-      more.textContent = collapsed ? 'Read more' : 'Show less';
+      c.classList.toggle('expanded', !collapsed);
+      more.textContent = collapsed ? 'Read more' : 'Read less';
       applyHeights();
     });
     text.after(more);
@@ -94,6 +95,14 @@ revealEls.forEach(el => io.observe(el));
       const text = c.querySelector('.testi-text');
       const more = c.querySelector('.testi-readmore');
       if (!text || !more) return;
+      // Keep reviews the visitor manually opened expanded — mobile fires
+      // resize events as the address bar shows/hides while scrolling, and we
+      // don't want that to snap an open review shut + reset the toggle.
+      if (c.classList.contains('expanded')) {
+        more.hidden = false;
+        more.textContent = 'Read less';
+        return;
+      }
       text.classList.add('clamp');
       more.textContent = 'Read more';
       const truncated = text.scrollHeight > text.clientHeight + 2;

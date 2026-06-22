@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "music-teacher",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-c", "import os, functools, http.server, socketserver; os.chdir('/Users/ryanvaughn/Documents/claude code projects/Music teacher'); Handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory='/Users/ryanvaughn/Documents/claude code projects/Music teacher'); socketserver.TCPServer.allow_reuse_address = True; socketserver.TCPServer(('', 8765), Handler).serve_forever()"],
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "cd '/Users/ryanvaughn/Documents/claude code projects/Music teacher' && exec python3 -m http.server 8765"],
       "port": 8765
     }
   ]
